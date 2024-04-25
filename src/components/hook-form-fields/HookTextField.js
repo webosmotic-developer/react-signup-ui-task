@@ -12,8 +12,12 @@ export const HookTextField = (props) => {
 
   return (
     <>
-      <p>{props.label}</p>
-      <input {...field} {...props} />
+      <p className="text-base">{props.label}</p>
+      <input
+        className="border-inputBorder mb-3 mt-1 appearance-none border rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 w-full"
+        {...field}
+        {...props}
+      />
       {(fieldState?.isTouched || formState?.isSubmitted) &&
         fieldState?.error?.message}
       {(fieldState?.isTouched || formState?.isSubmitted) &&

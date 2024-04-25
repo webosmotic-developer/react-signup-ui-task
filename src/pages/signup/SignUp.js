@@ -30,12 +30,14 @@ export default function SignUp() {
   };
 
   return (
-    <div>
-      <p>Lets get you started</p>
-      <p>
+    <div className="px-4 py-2">
+      <p className="text-28 font-semibold leading-8 mt-4 mb-2">
+        Lets get you started
+      </p>
+      <p className="text-base mb-3">
         Already have account?{' '}
         <span
-          className="text-4xl"
+          className="font-medium text-linkColor ml-1"
           onClick={() => {
             navigate('/login');
           }}
@@ -50,26 +52,34 @@ export default function SignUp() {
         })}
       >
         <div>
-          <HookTextField control={control} name="username" label="Username" />
+          <HookTextField
+            control={control}
+            name="username"
+            label="Username"
+            placeHolder="Enter username"
+          />
           <HookTextField
             control={control}
             type="date"
             name="bDate"
-            label="date of birth"
+            label="Date of birth"
+            placeHolder="DD / MM / YYYY"
           />
           <HookTextField
             control={control}
             type="email"
             name="email"
             label="Email address"
+            placeHolder="Enter email address"
           />
           <HookTextField
             control={control}
             type="password"
             name="password"
-            label="Enter password"
+            label="Password"
+            placeHolder="Enter password"
           />
-          <p>
+          <p className="text-14 leading-5 text-helperGray mb-3">
             Password should contain at least 8 characters, 1 special symbol
             character, 1 number, 1 uppercase letter
           </p>
@@ -78,15 +88,22 @@ export default function SignUp() {
             type="password"
             name="confirmPassword"
             label="Confirm password"
+            placeHolder="Confirm password"
           />
         </div>
 
-        <p>
+        <p className="text-base mb-11">
           I agree to the{' '}
-          <span onClick={() => navigate('/toc')}>Terms and Conditions</span> and{' '}
-          <span onClick={() => navigate('/privacy-policy')}>
+          <a className="font-base text-linkColor underline" href="/toc">
+            Terms and Conditions
+          </a>{' '}
+          and{' '}
+          <a
+            className="font-base text-linkColor underline"
+            href="/privacy-policy"
+          >
             Privacy Policy
-          </span>{' '}
+          </a>{' '}
           of this app.
         </p>
         <ButtonWithLoading type="submit" title={'Create Account'} />

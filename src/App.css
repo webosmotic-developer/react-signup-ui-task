@@ -4,6 +4,9 @@ body,
   height: 100%;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* Roboto Black */
 @font-face {
   font-family: 'Figtree-VariableFont_wght';
@@ -12,3 +15,4 @@ body,
 body {
   font-family: 'Figtree-VariableFont_wght', sans-serif;
 }
+
