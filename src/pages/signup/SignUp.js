@@ -17,6 +17,9 @@ export default function SignUp() {
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
+      date: '',
+      password: '',
+      confirmPassword: '',
     },
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
@@ -27,16 +30,17 @@ export default function SignUp() {
   };
 
   return (
-    <div style={{ backgroundColor: 'red' }}>
+    <div>
       <p>Lets get you started</p>
       <p>
-        Already have an account?{' '}
+        Already have account?{' '}
         <span
+          className="text-4xl"
           onClick={() => {
             navigate('/login');
           }}
         >
-          Sign In
+          Login
         </span>
       </p>
 
@@ -45,40 +49,48 @@ export default function SignUp() {
           onSubmit(data);
         })}
       >
-        <div
-        // sgap={3}
-        >
-          <HookTextField control={control} name="email" label="Email" />
+        <div>
+          <HookTextField control={control} name="username" label="Username" />
+          <HookTextField
+            control={control}
+            type="date"
+            name="bDate"
+            label="date of birth"
+          />
+          <HookTextField
+            control={control}
+            type="email"
+            name="email"
+            label="Email address"
+          />
           <HookTextField
             control={control}
             type="password"
             name="password"
-            label="Password"
+            label="Enter password"
           />
+          <p>
+            Password should contain at least 8 characters, 1 special symbol
+            character, 1 number, 1 uppercase letter
+          </p>
           <HookTextField
             control={control}
             type="password"
             name="confirmPassword"
-            label="Confirm Password"
+            label="Confirm password"
           />
         </div>
 
-        <div>
-          <ButtonWithLoading type="submit" title={'Sign Up'} />
-        </div>
+        <p>
+          I agree to the{' '}
+          <span onClick={() => navigate('/toc')}>Terms and Conditions</span> and{' '}
+          <span onClick={() => navigate('/privacy-policy')}>
+            Privacy Policy
+          </span>{' '}
+          of this app.
+        </p>
+        <ButtonWithLoading type="submit" title={'Create Account'} />
       </form>
-      <div width={'100%'}>
-        <div></div>
-        <p color={(theme) => theme.palette.text.secondary}>Or</p>
-        <div></div>
-      </div>
-
-      <p className="text-sm font-medium text-gray-900">Hello</p>
-
-      <p>
-        I agree to the <span>Terms and Conditions</span> and{' '}
-        <span>Privacy Policy</span> of this app.
-      </p>
     </div>
   );
 }

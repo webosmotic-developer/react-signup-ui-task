@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import type { Control } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import { useController } from 'react-hook-form';
 
 /**
@@ -9,8 +9,10 @@ import { useController } from 'react-hook-form';
 
 export const HookTextField = (props) => {
   const { field, fieldState, formState } = useController(props);
+
   return (
     <>
+      <p>{props.label}</p>
       <input {...field} {...props} />
       {(fieldState?.isTouched || formState?.isSubmitted) &&
         fieldState?.error?.message}
@@ -18,4 +20,8 @@ export const HookTextField = (props) => {
         Boolean(fieldState?.error)}
     </>
   );
+};
+
+HookTextField.propTypes = {
+  label: PropTypes.any,
 };

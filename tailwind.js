@@ -307,7 +307,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'ui-sans-serif',
+        'Figtree',
         'system-ui',
         'sans-serif',
         '"Apple Color Emoji"',

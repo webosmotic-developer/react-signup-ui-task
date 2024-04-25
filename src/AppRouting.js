@@ -2,8 +2,15 @@ import React, { Suspense } from 'react';
 
 import { Navigate, useRoutes } from 'react-router-dom';
 
+const PrivacyPolicy = React.lazy(
+  () => import('./pages/privacy-policy/PrivacyPolicy')
+);
+const TermsAndCondition = React.lazy(
+  () => import('./pages/terms-and-condition/TermsAndCondition')
+);
+
 const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
-const SignIn = React.lazy(() => import('./pages/login/Login'));
+const Login = React.lazy(() => import('./pages/login/Login'));
 
 export const AppRouting = () => {
   const defaultNavigate = <Navigate to={'./signup'} />;
@@ -33,7 +40,7 @@ export const AppRouting = () => {
   const routes = [
     {
       path: '/login',
-      element: getRouteWrapper(<SignIn />),
+      element: getRouteWrapper(<Login />),
     },
     {
       path: '/signup',
@@ -41,11 +48,11 @@ export const AppRouting = () => {
     },
     {
       path: '/toc',
-      element: getRouteWrapper(<SignUp />),
+      element: getRouteWrapper(<TermsAndCondition />),
     },
     {
       path: '/privacy-policy',
-      element: getRouteWrapper(<SignUp />),
+      element: getRouteWrapper(<PrivacyPolicy />),
     },
 
     {
