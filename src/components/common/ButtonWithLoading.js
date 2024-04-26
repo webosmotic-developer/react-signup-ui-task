@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 function ButtonWithLoading({ title, onClick, disabled, type }) {
   return (
     <button
-      className={`${disabled ? 'bg-gray-400' : 'bg-primary'} w-full text-white py-1.5 rounded-lg font-base font-medium`}
+      className={`${disabled ? 'bg-gray-400' : 'bg-primary'} w-full text-white py-3 rounded-lg font-base font-medium mb-2`}
       type={type}
       onClick={onClick}
       disabled={disabled || false}

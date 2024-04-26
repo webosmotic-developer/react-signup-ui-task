@@ -6,10 +6,13 @@ import * as Yup from 'yup';
  */
 
 const validationSchemas = {
-  usernameEmail: Yup.string()
+  email: Yup.string()
     .trim()
-    .email('Enter valid Email')
-    .required('Email is required'),
+    .required('Email is required')
+    .matches(
+      /^([a-z][a-z0-9_]*|(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})))$/,
+      'Enter a valid email'
+    ),
   username: Yup.string()
     .trim()
     .min(3, 'Username must be at least 3 characters'),
@@ -18,15 +21,11 @@ const validationSchemas = {
     .required('Password is required')
     .min(
       8,
-      'The password must be at least 8 characters and contain at least 1 lowercase, 1 Uppercase,1 number, and 1 special character'
+      'Password should contain at least 8 characters, 1 special symbol character, 1 number, 1 uppercase letter'
     )
-    .matches(/[a-z]/, 'Password can contain letters')
-    .matches(/[A-Z]/, 'Password can contain Capital letters')
-    .matches(/[0-9]/, 'Password can contain numbers')
-    .matches('^\\S*$', 'Whitespace is not allowed')
     .matches(
-      /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d)(?=.*[A-Z]).{8,}$/,
-      'Password can contain special characters'
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])(?=.{8,}).*$/,
+      'Password should contain at least 8 characters, 1 special symbol character, 1 number, 1 uppercase letter'
     ),
 
   confirmPassword: Yup.string().when('password', {
@@ -37,7 +36,8 @@ const validationSchemas = {
         'Both password need to be the same'
       ),
   }),
-  bDate: Yup.string()
+  bDate: Yup.date()
+    .typeError('Enter a valid date')
     .required('Date of birth is required')
     .max(
       new Date().toISOString().split('T')[0],

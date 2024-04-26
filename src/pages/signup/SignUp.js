@@ -8,7 +8,7 @@ import { RHFCheckbox } from '../../components/hook-form-fields/HookCheckBoxField
 import { HookTextField } from '../../components/hook-form-fields/HookTextField';
 import validationSchemas from '../../utils/validationSchemas';
 const validationSchema = yup.object({
-  email: validationSchemas.usernameEmail,
+  email: validationSchemas.email,
   username: validationSchemas.username,
   password: validationSchemas.password,
   confirmPassword: validationSchemas.confirmPassword,
@@ -21,7 +21,7 @@ export default function SignUp() {
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { isValid, errors },
   } = useForm({
     defaultValues: {
       username: '',
@@ -32,7 +32,7 @@ export default function SignUp() {
       tnc: false,
     },
     resolver: yupResolver(validationSchema),
-    mode: 'onChange',
+    mode: 'onTouched',
   });
 
   const onSubmit = (data) => {
@@ -42,10 +42,10 @@ export default function SignUp() {
   return (
     <div className="px-4 py-2 flex justify-center">
       <div className="max-w-xs">
-        <p className="text-28 font-semibold leading-8 mt-11 mb-2">
+        <p className="text-28 font-semibold leading-8 mt-11 mb-4">
           Lets get you started
         </p>
-        <p className="text-base mb-3">
+        <p className="text-base mb-6">
           Already have account?{' '}
           <span
             className="font-medium text-linkColor ml-1"
@@ -91,10 +91,6 @@ export default function SignUp() {
               label="Password"
               placeholder="Enter password"
             />
-            <p className="text-14 leading-5 text-helperGray mb-3">
-              Password should contain at least 8 characters, 1 special symbol
-              character, 1 number, 1 uppercase letter
-            </p>
             <HookTextField
               control={control}
               type="password"
@@ -129,7 +125,7 @@ export default function SignUp() {
             </p>{' '}
           </div>
           <ButtonWithLoading
-            disabled={!!Object.keys(errors).length}
+            disabled={!isValid || !!Object.keys(errors).length}
             type="submit"
             title={'Create Account'}
           />
