@@ -67,7 +67,7 @@ export default function SignUp() {
               control={control}
               name="username"
               label="Username"
-              placeHolder="Enter username"
+              placeholder="Enter username"
             />
             <HookTextField
               control={control}
@@ -75,21 +75,21 @@ export default function SignUp() {
               name="bDate"
               label="Date of birth"
               max={new Date().toISOString().split('T')[0]}
-              placeHolder="DD / MM / YYYY"
+              placeholder="DD / MM / YYYY"
             />
             <HookTextField
               control={control}
               type="email"
               name="email"
               label="Email address"
-              placeHolder="Enter email address"
+              placeholder="Enter email address"
             />
             <HookTextField
               control={control}
               type="password"
               name="password"
               label="Password"
-              placeHolder="Enter password"
+              placeholder="Enter password"
             />
             <p className="text-14 leading-5 text-helperGray mb-3">
               Password should contain at least 8 characters, 1 special symbol
@@ -100,7 +100,7 @@ export default function SignUp() {
               type="password"
               name="confirmPassword"
               label="Confirm password"
-              placeHolder="Confirm password"
+              placeholder="Confirm password"
             />
           </div>
 
@@ -129,7 +129,7 @@ export default function SignUp() {
             </p>{' '}
           </div>
           <ButtonWithLoading
-            disabled={Object.keys(errors).length}
+            disabled={!!Object.keys(errors).length}
             type="submit"
             title={'Create Account'}
           />

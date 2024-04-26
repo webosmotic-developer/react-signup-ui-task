@@ -36,7 +36,7 @@ export const HookTextField = (props) => {
               color={'#292D32'}
               width={'24px'}
               height={'24px'}
-              className="absolute mr-3"
+              className="absolute mr-3 cursor-pointer"
               onClick={() => setShowPassword((prev) => !prev)}
             />
           ) : (
@@ -44,7 +44,7 @@ export const HookTextField = (props) => {
               color={'#292D32'}
               width={'24px'}
               height={'24px'}
-              className="absolute mr-3"
+              className="absolute mr-3 cursor-pointer"
               onClick={() => setShowPassword((prev) => !prev)}
             />
           )
