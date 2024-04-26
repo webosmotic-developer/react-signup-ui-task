@@ -14,6 +14,9 @@ module.exports = {
         inputBorder: '#C2C3C4',
         primary: '#549FF7',
       },
+      spacing: {
+        91: '91px',
+      },
     },
     fontSize: {
       28: '28px',
