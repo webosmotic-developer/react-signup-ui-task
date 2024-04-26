@@ -12,7 +12,7 @@ export const HookTextField = (props) => {
   const { field, fieldState, formState } = useController(props);
   const { type } = props;
   const [showPassword, setShowPassword] = useState(false);
-  console.log({ type });
+
   return (
     <>
       <p className="text-base">{props.label}</p>

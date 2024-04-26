@@ -7,9 +7,13 @@ import * as Yup from 'yup';
 
 const validationSchemas = {
   usernameEmail: Yup.string()
+    .trim()
     .email('Enter valid Email')
-    .min(3, 'Username is too short - should be 3 chars minimum')
     .required('Email is required'),
+  username: Yup.string()
+    .trim()
+    .min(3, 'Username must be at least 3 characters'),
+  tnc: Yup.boolean().oneOf([true], 'Please accept terms and conditions'),
   password: Yup.string()
     .required('Password is required')
     .min(
@@ -21,7 +25,7 @@ const validationSchemas = {
     .matches(/[0-9]/, 'Password can contain numbers')
     .matches('^\\S*$', 'Whitespace is not allowed')
     .matches(
-      /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g,
+      /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d)(?=.*[A-Z]).{8,}$/,
       'Password can contain special characters'
     ),
 
@@ -33,6 +37,12 @@ const validationSchemas = {
         'Both password need to be the same'
       ),
   }),
+  bDate: Yup.string()
+    .required('Date of birth is required')
+    .max(
+      new Date().toISOString().split('T')[0],
+      'Date of birth cannot be of future'
+    ),
 };
 
 export default validationSchemas;

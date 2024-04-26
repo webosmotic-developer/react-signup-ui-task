@@ -4,22 +4,32 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import ButtonWithLoading from '../../components/common/ButtonWithLoading';
+import { RHFCheckbox } from '../../components/hook-form-fields/HookCheckBoxField';
 import { HookTextField } from '../../components/hook-form-fields/HookTextField';
 import validationSchemas from '../../utils/validationSchemas';
 const validationSchema = yup.object({
   email: validationSchemas.usernameEmail,
+  username: validationSchemas.username,
   password: validationSchemas.password,
   confirmPassword: validationSchemas.confirmPassword,
+  bDate: validationSchemas.bDate,
+  tnc: validationSchemas.tnc,
 });
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const { handleSubmit, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
+      username: '',
       email: '',
-      date: '',
+      bDate: '',
       password: '',
       confirmPassword: '',
+      tnc: false,
     },
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
@@ -64,6 +74,7 @@ export default function SignUp() {
               type="date"
               name="bDate"
               label="Date of birth"
+              max={new Date().toISOString().split('T')[0]}
               placeHolder="DD / MM / YYYY"
             />
             <HookTextField
@@ -93,21 +104,35 @@ export default function SignUp() {
             />
           </div>
 
-          <p className="text-base mb-91">
-            I agree to the{' '}
-            <a className="font-base text-linkColor underline" href="/toc">
-              Terms and Conditions
-            </a>{' '}
-            and{' '}
-            <a
-              className="font-base text-linkColor underline"
-              href="/privacy-policy"
-            >
-              Privacy Policy
-            </a>{' '}
-            of this app.
-          </p>
-          <ButtonWithLoading type="submit" title={'Create Account'} />
+          <div className="flex align-middle mb-91 gap-4">
+            {' '}
+            <div className="flex items-center">
+              {' '}
+              <RHFCheckbox name={'tnc'} control={control} />
+            </div>{' '}
+            <p className="text-base">
+              {' '}
+              I agree to the{' '}
+              <a className="font-base text-linkColor underline" href="/toc">
+                {' '}
+                Terms and Conditions{' '}
+              </a>{' '}
+              and{' '}
+              <a
+                className="font-base text-linkColor underline"
+                href="/privacy-policy"
+              >
+                {' '}
+                Privacy Policy{' '}
+              </a>{' '}
+              of this app.{' '}
+            </p>{' '}
+          </div>
+          <ButtonWithLoading
+            disabled={Object.keys(errors).length}
+            type="submit"
+            title={'Create Account'}
+          />
         </form>
       </div>
     </div>
