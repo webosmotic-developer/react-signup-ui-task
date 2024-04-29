@@ -5,8 +5,8 @@ import { Navigate, useRoutes } from 'react-router-dom';
 const PrivacyPolicy = React.lazy(
   () => import('./pages/privacy-policy/PrivacyPolicy')
 );
-const TermsAndCondition = React.lazy(
-  () => import('./pages/terms-and-condition/TermsAndCondition')
+const TermsAndConditions = React.lazy(
+  () => import('./pages/terms-and-conditions/TermsAndConditions')
 );
 
 const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
@@ -15,7 +15,7 @@ const Login = React.lazy(() => import('./pages/login/Login'));
 export const AppRouting = () => {
   const defaultNavigate = <Navigate to={'./signup'} />;
 
-  const getRouteWrapper = (component, authRoute = true) => {
+  const getRouteWrapper = (component) => {
     return (
       <Suspense
         fallback={
@@ -48,7 +48,7 @@ export const AppRouting = () => {
     },
     {
       path: '/toc',
-      element: getRouteWrapper(<TermsAndCondition />),
+      element: getRouteWrapper(<TermsAndConditions />),
     },
     {
       path: '/privacy-policy',

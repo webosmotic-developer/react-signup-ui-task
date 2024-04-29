@@ -27,7 +27,6 @@ const validationSchemas = {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])(?=.{8,}).*$/,
       'Password should contain at least 8 characters, 1 special symbol character, 1 number, 1 uppercase letter'
     ),
-
   confirmPassword: Yup.string().when('password', {
     is: (val) => (val && val.length > 0 ? true : false),
     then: () =>

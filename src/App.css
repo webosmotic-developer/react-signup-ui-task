@@ -7,7 +7,9 @@ body,
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Roboto Black */
+
+/* Figtree */
+
 @font-face {
   font-family: 'Figtree-VariableFont_wght';
   src: url('../public/fonts/Figtree-VariableFont_wght.ttf') format('truetype');
@@ -15,4 +17,3 @@ body,
 body {
   font-family: 'Figtree-VariableFont_wght', sans-serif;
 }
-

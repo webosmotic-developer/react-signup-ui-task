@@ -1,7 +1,7 @@
 export default function Login() {
   return (
     <div>
-      <p>coming soon...</p>
+      <p>Login</p>
     </div>
   );
 }

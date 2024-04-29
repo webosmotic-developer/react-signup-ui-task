@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
-
+// common checkbox component managed according to react-hook-form
 const RHFCheckbox = (props) => {
   const { name, disabled = false, control, onChange, checkedValue } = props;
   return (

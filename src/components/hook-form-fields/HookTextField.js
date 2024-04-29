@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import { useController } from 'react-hook-form';
 import { EyeOffOutline, EyeOutline } from 'react-ionicons';
 
-/**
- * Common component for text input
- */
-
+// common input component managed according to react-hook-form
 export const HookTextField = (props) => {
   const { field, fieldState, formState } = useController(props);
   const { type } = props;
@@ -30,6 +27,7 @@ export const HookTextField = (props) => {
                 : props?.type
             }
           />
+          {/* displaying icons based on hide/show password state */}
           {type === 'password' ? (
             showPassword ? (
               <EyeOffOutline
@@ -37,7 +35,7 @@ export const HookTextField = (props) => {
                 width={'24px'}
                 height={'24px'}
                 className="absolute mr-3 cursor-pointer"
-                onClick={() => setShowPassword((prev) => !prev)}
+                onClick={() => setShowPassword((prev) => !prev)} // hides password
               />
             ) : (
               <EyeOutline
@@ -45,19 +43,15 @@ export const HookTextField = (props) => {
                 width={'24px'}
                 height={'24px'}
                 className="absolute mr-3 cursor-pointer"
-                onClick={() => setShowPassword((prev) => !prev)}
+                onClick={() => setShowPassword((prev) => !prev)} // displays password
               />
             )
           ) : null}
         </div>
+        {/* displayed field errors */}
         {fieldState?.isTouched || formState?.isSubmitted ? (
           <p className="text-14 leading-5 text-helperGray">
             {fieldState?.error?.message}
-          </p>
-        ) : null}
-        {fieldState?.isTouched || formState?.isSubmitted ? (
-          <p className="text-14 leading-5 text-helperGray">
-            {Boolean(fieldState?.error)}
           </p>
         ) : null}
       </div>
